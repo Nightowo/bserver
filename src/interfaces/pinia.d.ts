@@ -1,3 +1,27 @@
+// 用户信息
+declare interface UserInfos<T = any> {
+    authBtnList: string[];      //权限数组
+    photo: string;
+    roles: string[];            //角色分类
+    time: number;
+    userName: string;
+    [key: string]: T;
+}
+
+declare interface UserInfosState {
+    userInfos: UserInfos;
+}
+
+// TagsView 路由列表
+declare interface TagsViewRoutesState<T = any> {
+    tagsViewRoutes: T[];
+    isTagsViewCurrenFull: Boolean;
+}
+
+//初始化路由列表
+declare interface RequestInitRoutes {
+    requestInitRoutes: string[];
+}
 
 // 路由缓存列表
 declare interface KeepAliveNamesState {
