@@ -48,16 +48,16 @@
 </template>
 
 <script setup lang="ts" name="account">
-import {useThemeConfig} from "/@/router/themeConfig";
-import {storeToRefs} from "pinia";
-import {useRoute, useRouter} from "vue-router";
-import {reactive} from "vue";
-import {Session} from "/@/utils/storage";
+import { useThemeConfig } from "/@/router/themeConfig";
+import { storeToRefs } from "pinia";
+import { useRoute, useRouter } from "vue-router";
+import { reactive } from "vue";
+import { Session } from "/@/utils/storage";
 import Cookies from 'js-cookie';
-import {initBackEndControlRoutes} from "/@/router/backControl";
+import { initBackEndControlRoutes } from "/@/router/backControl";
 import { ElMessage } from 'element-plus';
-import {initFrontEndControlRoutes} from "/@/router/frontControl";
-import {nextLoading} from "/@/utils/loading";
+import { initFrontEndControlRoutes } from "/@/router/frontControl";
+import { nextLoading } from "/@/utils/loading";
 
 const storesThemeConfig = useThemeConfig();
 const{themeConfig} = storeToRefs(storesThemeConfig);
@@ -104,6 +104,7 @@ const loginSuccess = (isNoPower: boolean | undefined) => {
     //let currentTimeInfo = currentTime.value;
     // 登录成功，跳到转首页
     // 如果是复制粘贴的路径，非首页/登录页，那么登录成功后重定向到对应的路径中
+    console.log(router.getRoutes())
     if (route.query?.reredirect) {
       router.push({
         path: <string>route.query?.redirect,

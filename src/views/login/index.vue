@@ -22,9 +22,8 @@
 </template>
 
 <script setup lang="ts" name="login">
-import {defineAsyncComponent, reactive} from "vue";
-import {onMounted} from "vue-demi";
-import {nextLoading} from "/@/utils/loading";
+import { defineAsyncComponent, reactive, onMounted } from "vue";
+import { nextLoading } from "/@/utils/loading";
 
 const Account = defineAsyncComponent(() => import('/@/components/account.vue'));
 const state = reactive({

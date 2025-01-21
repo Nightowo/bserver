@@ -1,14 +1,15 @@
-import {useThemeConfig} from "/@/router/themeConfig";
+import { useThemeConfig } from "/@/router/themeConfig";
 import pinia from "/@/stores";
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import {storeToRefs} from "pinia";
-import {createRouter, createWebHashHistory} from "vue-router";
-import {useKeepALiveNames} from "/@/stores/keepALiveNames";
-import {Session} from "/@/utils/storage";
-import {useRoutesList} from "/@/stores/routesList";
-import {initBackEndControlRoutes} from "/@/router/backControl";
+import { storeToRefs } from "pinia";
+import { createRouter, createWebHashHistory } from "vue-router";
+import { useKeepALiveNames } from "/@/stores/keepALiveNames";
+import { Session } from "/@/utils/storage";
+import { useRoutesList } from "/@/stores/routesList";
+import { initBackEndControlRoutes } from "/@/router/backControl";
 import { staticRoutes, notFoundAndNoPower } from '/@/router/route';
+import { initFrontEndControlRoutes } from "/@/router/frontControl";
 
 /**
  * 1、前端控制路由时：isRequestRoutes 为 false，需要写 roles，需要走 setFilterRoute 方法。
@@ -83,7 +84,7 @@ export const formatTwoStageRoutes = (arr: any) => {
                 item.meta['isDynamic'] = true;
                 item.meta['isDynamicPath'] = item.path;
             }
-            newArr.push(...item);
+            newArr[0].children.push({...item});
             // 存 name 值，keep-alive 中 include 使用，实现路由的缓存
             // 路径：/@/layout/routerView/parent.vue
             if (newArr[0].meta.isKeepAlive && item.meta.isKeepAlive) {
@@ -93,7 +94,6 @@ export const formatTwoStageRoutes = (arr: any) => {
             }
         }
     });
-    console.log(newArr)
     return newArr;
 }
 
@@ -114,7 +114,7 @@ router.beforeEach(async (to, from, next) => {
             Session.clear();
             NProgress.done();
         } else if (token && to.path === '/login') {
-            next('home');
+            next('/home');
             NProgress.done();
         } else {
             const storesRoutesList = useRoutesList(pinia);
@@ -128,7 +128,7 @@ router.beforeEach(async (to, from, next) => {
                     next({path: to.path, query: to.query});
                 } else {
                     // https://gitee.com/lyt-top/vue-next-admin/issues/I5F1HP
-                    //await initFrontEndControlRoutes();
+                    await initFrontEndControlRoutes();
                     next({path: to.path, query: to.query});
                 }
             } else {
@@ -141,6 +141,7 @@ router.beforeEach(async (to, from, next) => {
 // 路由加载后
 router.afterEach(() => {
     //测试标记
+    //console.log(router.getRoutes())
     NProgress.done();
 });
 

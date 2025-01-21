@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
+import message from '/@/i18n/lang/zh-cn';
 
 /**
  * 建议：路由 path 路径与文件夹名称相同，找文件可浏览器地址找，方便定位文件位置
@@ -53,7 +54,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
                 name: 'home',
                 component: () => import('/@/views/home/index.vue'),
                 meta: {
-                    title: 'message.router.home',
+                    title: message.router.home,
                     isLink: '',
                     isHide: false,
                     isKeepAlive: true,
@@ -63,6 +64,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
                     icon: 'iconfont icon-shouye',
                 },
             },
+
            // other tags
         ],
     },
@@ -78,7 +80,7 @@ export const notFoundAndNoPower = [
         name: 'notFound',
         component: () => import('/@/views/error/404.vue'),
         meta: {
-            title: 'message.staticRoutes.notFound',
+            title: message.staticRoutes.notFound,
             isHide: true,
         },
     },
@@ -87,7 +89,7 @@ export const notFoundAndNoPower = [
         name: 'noPower',
         component: () => import('/@/views/error/401.vue'),
         meta: {
-            title: 'message.staticRoutes.noPower',
+            title: message.staticRoutes.noPower,
             isHide: true,
         },
     },
@@ -114,11 +116,25 @@ export const staticRoutes: Array<RouteRecordRaw> = [
      */
     {
         path: '/others',
-        name: 'other1',
+        name: 'others',
         component: () => import('/@/views/others/demo1.vue'),
         meta: {
-            title: 'message.router.other1',
+            title: message.router.others,
         },
     },
-
+    {
+        path: '/demo',
+        name: 'demo',
+        component: () => import('/@/views/demo/index.vue'),
+        meta: {
+            title: 'demo',
+            isLink: '',
+            isHide: false,
+            isKeepAlive: true,
+            isAffix: true,
+            isIframe: false,
+            roles: ['admin', 'common'],
+            icon: 'iconfont icon-shouye',
+        },
+    }
 ];

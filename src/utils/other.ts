@@ -4,6 +4,7 @@ import {useThemeConfig} from "/@/router/themeConfig";
 import pinia from "/@/stores";
 import {storeToRefs} from "pinia";
 import router from "/@/router";
+import {Local} from "/@/utils/storage";
 
 /**
  * 导出全局注册 element plus svg 图标
@@ -65,6 +66,25 @@ export function deepClone(obj: EmptyObjectType) {
 }
 
 /**
+ * 判断是否是移动端
+ */
+export function isMobile() {
+    return !!navigator.userAgent.match(
+        /('phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone')/i
+    );
+}
+
+/**
+ * 全局组件大小
+ * @returns 返回 `window.localStorage` 中读取的缓存值 `globalComponentSize`
+ */
+export const globalComponentSize = (): string => {
+    const stores = useThemeConfig(pinia);
+    const { themeConfig } = storeToRefs(stores);
+    return Local.get('themeConfig')?.globalComponentSize || themeConfig.value?.globalComponentSize;
+};
+
+/**
  * 统一批量导出
  * @method elSvg 导出全局注册 element plus svg 图标
  * @method useTitle 设置浏览器标题国际化
@@ -85,6 +105,12 @@ const other = {
     },
     deepClone: (obj: EmptyObjectType) => {
         return deepClone(obj);
+    },
+    isMobile: () => {
+        return isMobile();
+    },
+    globalComponentSize: () => {
+        return globalComponentSize();
     },
 };
 
