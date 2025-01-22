@@ -18,7 +18,7 @@ import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
 import Emitter from '/@/utils/mitt';
 
 //引入组件
-const Vertical = defineAsyncComponent(() => import('/@/layout/navMenu/vertical.vue'));
+const Vertical = defineAsyncComponent(() => import('/@/layout/menu/vertical.vue'));
 
 // 定义变量内容
 const layoutAsideScrollbarRef = ref();

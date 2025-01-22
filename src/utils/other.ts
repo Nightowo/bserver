@@ -75,6 +75,30 @@ export function isMobile() {
 }
 
 /**
+ * 设置 自定义 tagsView 名称、 自定义 tagsView 名称国际化
+ * @param params 路由 query、params 中的 tagsViewName
+ * @returns 返回当前 tagsViewName 名称
+ */
+export const setTagsViewName = (item: any) => {
+    let tagsViewName: string = '';
+    const { query, params, meta } = item;
+    const pattern = /^\{("(zh-cn|en|zh-tw)":"[^,]+",?){1,3}}$/;
+    if (query?.tagsViewName || params?.tagsViewName) {
+        if (pattern.test(query?.tagsViewName) || pattern.test(params?.tagsViewName)) {
+            // 国际化
+            const urlTagsParams = (query?.tagsViewName && JSON.parse(query?.tagsViewName)) || (params?.tagsViewName && JSON.parse(params?.tagsViewName));
+            tagsViewName = 'other_setTagsViewName';
+        } else {
+            // 非国际化
+            tagsViewName = query?.tagsViewName || params?.tagsViewName;
+        }
+    }else {
+        tagsViewName = meta.title;
+    }
+    return tagsViewName;
+}
+
+/**
  * 全局组件大小
  * @returns 返回 `window.localStorage` 中读取的缓存值 `globalComponentSize`
  */
@@ -111,6 +135,9 @@ const other = {
     },
     globalComponentSize: () => {
         return globalComponentSize();
+    },
+    setTagsViewNameI18n(route: RouteToFrom) {
+        return setTagsViewName(route);
     },
 };
 
