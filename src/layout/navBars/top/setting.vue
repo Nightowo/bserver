@@ -418,7 +418,7 @@
 <script setup lang="ts" name="layoutSetting">
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
-import {reactive, computed, nextTick, onMounted, onUnmounted} from "vue";
+import { reactive, computed, nextTick, onMounted, onUnmounted } from "vue";
 import { commonFunctions } from "/@/utils/common";
 import { ElMessage } from "element-plus";
 import { useChangeColor } from "/@/utils/theme";

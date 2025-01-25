@@ -9,13 +9,12 @@
             :data-url="v.url"
             :class="{ 'is-active': isActive(v) }"
             @contextmenu.prevent="onContextmenu(v, $event)"
-            @mousedown="onMousedownMenu(v, $event)"
+            @mousedown="onMousedownMenu(v, $event)"h
             @click="onTagsClick(v, k)"
             :ref="
 						(el) => {
 							if (el) tagsRefs[k] = el;
-						}
-					"
+						}"
         >
           <i class="iconfont icon-webicon318 layout-navbars-tagsview-ul-li-iconfont" v-if="isActive(v)"></i>
           <SvgIcon :name="v.meta.icon" v-if="!isActive(v) && getThemeConfig.isTagsviewIcon" class="pr5" />
@@ -129,7 +128,7 @@ const addBrowserSetSession = (tagsViewList: Array<object>) => {
 
 // 获取 pinia 中的 tagsViewRoutes 列表
 const getTagsViewRoutes = async () => {
-  state.routeActive = await setTagsViewHighlight(route);
+  state.routeActive = setTagsViewHighlight(route);
   state.routePath = (await route.meta.isDynamic) ? route.meta.isDynamicPath : route.path;
   state.tagsViewList = [];
   state.tagsViewRoutesList = tagsViewRoutes.value;
@@ -141,14 +140,14 @@ const initTagsView = async () => {
   if (Session.get('tagsViewList') && getThemeConfig.value.isCacheTagsView) {
     state.tagsViewList = await Session.get('tagsViewList');
   } else {
-    await state.tagsViewRoutesList.map((v: RouteItem) => {
+    state.tagsViewRoutesList.map((v: RouteItem) => {
       if (v.meta?.isAffix && !v.meta.isHide) {
         v.url = setTagsViewHighlight(v);
         state.tagsViewList.push({ ...v });
         storesKeepALiveNames.addCachedView(v);
       }
     });
-    await addTagsView(route.path, <RouteToFrom>route);
+    addTagsView(route.path, <RouteToFrom>route);
   }
   // 初始化当前元素(li)的下标
   getTagsRefsIndex(getThemeConfig.value.isShareTagsView ? state.routePath : state.routeActive);
@@ -206,7 +205,7 @@ const addTagsView = (path: string, to?: RouteToFrom) => {
     if (to?.meta?.isDynamic) {
       // 动态路由（xxx/:id/:name"）：参数不同，开启多个 tagsview
       if (!getThemeConfig.value.isShareTagsView) await solveAddTagsView(path, to);
-      else await singleAddTagsView(path, to);
+      else singleAddTagsView(path, to);
       if (state.tagsViewList.some((v: RouteItem) => v.path === to?.meta?.isDynamicPath)) {
         // 防止首次进入界面时(登录进入) tagsViewList 不存浏览器中
         addBrowserSetSession(state.tagsViewList);
@@ -216,7 +215,7 @@ const addTagsView = (path: string, to?: RouteToFrom) => {
     } else {
       // 普通路由：参数不同，开启多个 tagsview
       if (!getThemeConfig.value.isShareTagsView) await solveAddTagsView(path, to);
-      else await singleAddTagsView(path, to);
+      else singleAddTagsView(path, to);
       if (state.tagsViewList.some((v: RouteItem) => v.path === path)) {
         // 防止首次进入界面时(登录进入) tagsViewList 不存浏览器中
         addBrowserSetSession(state.tagsViewList);
@@ -230,8 +229,8 @@ const addTagsView = (path: string, to?: RouteToFrom) => {
     else item.query = to?.query ? to?.query : route.query;
     item.url = setTagsViewHighlight(item);
     await storesKeepALiveNames.addCachedView(item);
-    await state.tagsViewList.push({ ...item });
-    await addBrowserSetSession(state.tagsViewList);
+    state.tagsViewList.push({ ...item });
+    addBrowserSetSession(state.tagsViewList);
   });
 };
 
@@ -250,7 +249,7 @@ const refreshCurrentTagsView = async (fullPath: string) => {
   if (!item) return false;
   await storesKeepALiveNames.delCachedView(item);
   Emitter.emit('onTagsViewRefreshRouterView', fullPath);
-  if (item.meta?.isKeepAlive) storesKeepALiveNames.addCachedView(item);
+  if (item.meta?.isKeepAlive) await storesKeepALiveNames.addCachedView(item);
 };
 
 // 3、关闭当前 tagsView：如果是设置了固定的（isAffix），不可以关闭
@@ -402,7 +401,7 @@ const onMousedownMenu = (v: RouteItem, e: MouseEvent) => {
 // 当前的 tagsView 项点击时
 const onTagsClick = (v: RouteItem, k: number) => {
   state.tagsRefsIndex = k;
-  router.push(v);
+  router.push(v.path);
   // 分栏布局时，收起/展开菜单
   if (getThemeConfig.value.layout === 'columns') {
     const item: RouteItem = routesList.value.find((r: RouteItem) => r.path.indexOf(`/${v.path.split('/')[1]}`) > -1);
@@ -640,7 +639,6 @@ watch(
   &-ul {
     list-style: none;
     margin: 0;
-    padding: 0;
     height: 34px;
     display: flex;
     align-items: center;

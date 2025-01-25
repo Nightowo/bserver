@@ -16,7 +16,6 @@ import { Local, Session } from "/@/utils/storage";
 import setIntroduction from '/@/utils/setIconfont';
 import mittIn from "/@/utils/mitt";
 import other from "/@/utils/other";
-import router from "/@/router";
 
 //import components
 const Settings = defineAsyncComponent(() => import('/@/layout/navBars/top/setting.vue'));
@@ -58,8 +57,6 @@ onMounted(() => {
       stores.setCurrenFullscreen(Session.get('isTagsViewCurrenFull'));
     }
   })
-  // console.log(router.getRoutes())
-  // console.log(route.path)
 });
 
 // 页面销毁时
@@ -67,10 +64,15 @@ onUnmounted(() => {
   mittIn.off('openSettingsDrawer', () => {});
 });
 
+const test = (route: any) => {
+  console.log(route);
+}
+
 // 监听路由的变化，设置网站标题
 watch(
     () => route.path,
     () => {
+      test(route.path)
       other.useTitle();
     },
     {

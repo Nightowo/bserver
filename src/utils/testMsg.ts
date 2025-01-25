@@ -30,8 +30,8 @@ export const getApiUserInfo = async () => {
                 userName: userName,
                 photo:
                     userName === 'admin'
-                        ? 'https://img2.baidu.com/it/u=1978192862,2048448374&fm=253&fmt=auto&app=138&f=JPEG?w=504&h=500'
-                        : 'https://img2.baidu.com/it/u=2370931438,70387529&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+                        ? 'https://upload-bbs.miyoushe.com/upload/2023/06/20/82642572/dfba2e76f606de55268dbe9642156580_4737315992841300801.jpg?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg'
+                        : 'https://upload-bbs.miyoushe.com/upload/2022/05/02/82642572/14d02bca1c45d29a6e937aae90a4bb86_2902681808342408337.jpg?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg',
                 time: new Date().getTime(),
                 roles: defaultRoles,
                 authBtnList: defaultAuthBtnList,

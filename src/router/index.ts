@@ -90,7 +90,7 @@ export const formatTwoStageRoutes = (arr: any) => {
             if (newArr[0].meta.isKeepAlive && item.meta.isKeepAlive) {
                 cacheList.push(item.name);
                 const stores = useKeepALiveNames(pinia);
-                stores.setCacheKeepAlive(cacheList);
+                stores.setCacheKeepAlive(cacheList).then();
             }
         }
     });
@@ -140,8 +140,6 @@ router.beforeEach(async (to, from, next) => {
 
 // 路由加载后
 router.afterEach(() => {
-    //测试标记
-    //console.log(router.getRoutes())
     NProgress.done();
 });
 

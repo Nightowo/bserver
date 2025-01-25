@@ -64,7 +64,36 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
                     icon: 'iconfont icon-shouye',
                 },
             },
-
+            {
+                path: '/demo',
+                name: 'demo',
+                component: () => import('/@/views/demo/index.vue'),
+                meta: {
+                    title: '测试页面',
+                    isLink: '',
+                    isHide: false,
+                    isKeepAlive: true,
+                    isAffix: true,
+                    isIframe: false,
+                    roles: ['admin', 'common'],
+                    icon: 'iconfont icon-infoFilled',
+                },
+            },
+            {
+                path: '/userMsg',
+                name: 'userMsg',
+                component: () => import('/@/views/userMsg/index.vue'),
+                meta: {
+                    title: '用户信息',
+                    isLink: '',
+                    isHide: false,
+                    isKeepAlive: true,
+                    isAffix: true,
+                    isIframe: false,
+                    roles: ['admin', 'common'],
+                    icon: 'iconfont icon-gerenzhongxin',
+                },
+            }
            // other tags
         ],
     },
@@ -114,27 +143,5 @@ export const staticRoutes: Array<RouteRecordRaw> = [
      * 提示：写在这里的为全屏界面，不建议写在这里
      * 请写在 `dynamicRoutes` 路由数组中
      */
-    {
-        path: '/others',
-        name: 'others',
-        component: () => import('/@/views/others/demo1.vue'),
-        meta: {
-            title: message.router.others,
-        },
-    },
-    {
-        path: '/demo',
-        name: 'demo',
-        component: () => import('/@/views/demo/index.vue'),
-        meta: {
-            title: 'demo',
-            isLink: '',
-            isHide: false,
-            isKeepAlive: true,
-            isAffix: true,
-            isIframe: false,
-            roles: ['admin', 'common'],
-            icon: 'iconfont icon-shouye',
-        },
-    }
+
 ];

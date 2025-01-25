@@ -2,7 +2,7 @@
   <el-main class="layout-main" :style="isFixedHeader ? `height: calc(100% - ${setMainHeight})` : `minHeight: calc(100% - ${setMainHeight})`">
     <el-scrollbar
         ref="layoutMainScrollbarRef"
-        class="layout-main-scroll layout-backtop-header-fixed"
+        :class="['layout-main-scroll', 'layout-backtop-header-fixed']"
         wrap-class="layout-main-scroll"
         view-class="layout-main-scroll"
     >
@@ -65,6 +65,11 @@ onMounted(() => {
 // 暴露变量
 defineExpose({
   layoutMainScrollbarRef,
+});
+
+// 禁用自动继承属性
+defineOptions({
+  inheritAttrs: false,
 });
 </script>
 

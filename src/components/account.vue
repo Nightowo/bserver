@@ -111,6 +111,7 @@ const loginSuccess = (isNoPower: boolean | undefined) => {
         query: Object.keys(<string>route.query?.params).length > 0 ? JSON.parse(<string>route.query?.params) : '',
       })
     } else {
+      debugger
       router.push('/')
     }
     // 登录成功提示

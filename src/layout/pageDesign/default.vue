@@ -33,7 +33,7 @@ const updateScrollbar = () => {
   // 更新父级 scrollbar
   layoutScrollbarRef.value.update();
   // 更新子级 scrollbar
-  layoutMainRef.value!.layoutMainScrollbarRef.update();
+  //layoutMainRef.value!.layoutMainScrollbarRef.update();
 };
 
 // 重置滚动条高度，由于组件是异步引入的
@@ -42,7 +42,7 @@ const initScrollBarHeight = () => {
     setTimeout(() => {
       updateScrollbar();
       layoutScrollbarRef.value.wrapRef.scrollTop = 0;
-      layoutMainRef.value!.layoutMainScrollbarRef.wrapRef.scrollTop = 0;
+      //layoutMainRef.value!.layoutMainScrollbarRef.wrapRef.scrollTop = 0;
     }, 500);
   });
 };

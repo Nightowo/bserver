@@ -3,7 +3,9 @@
     <router-view v-slot="{ Component }">
       <transition :name="setTransitionName" mode="out-in">
         <keep-alive :include="getKeepAliveNames">
-          <component :is="Component" :key="state.refreshRouterViewKey" class="w100" v-show="!isIframePage" />
+          <div v-show="!isIframePage" class="tempDiv w100">
+            <Component :is="Component" :key="state.refreshRouterViewKey"  />
+          </div>
         </keep-alive>
       </transition>
     </router-view>
@@ -14,7 +16,7 @@
 </template>
 
 <script setup lang="ts" name="layoutParent">
-import { defineAsyncComponent, computed, reactive, onBeforeMount, onUnmounted, nextTick, watch, onMounted } from "vue";
+import { defineAsyncComponent, computed, reactive, onBeforeMount, onUnmounted, nextTick, watch, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from "vue-router";
 import { storeToRefs } from 'pinia';
 import { useKeepALiveNames } from "/@/stores/keepALiveNames";
@@ -39,6 +41,7 @@ const state = reactive<ParentViewState>({
   keepAliveNameList: [],
   iframeList: [],
 });
+
 
 // 设置主界面切换动画
 const setTransitionName = computed(() => {
@@ -115,6 +118,9 @@ watch(
 );
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.tempDiv {
+  width: 100%;
+  height: 100%;
+}
 </style>

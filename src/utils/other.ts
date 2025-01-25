@@ -30,17 +30,17 @@ export function useTitle() {
     const stores = useThemeConfig(pinia);
     const { themeConfig } = storeToRefs(stores);
     nextTick(() => {
-        let webTitle = '';
+        //let webTitle = '';
         let globalTitle: string = themeConfig.value.globalTitle;
         const {path, meta} = router.currentRoute.value;
-        if (path === '/login') {
-            webTitle = <string>meta.title;
-        } else {
-            webTitle = <string>meta.title;
-            //webTitle = setTagsViewNameI18n(router.currentRoute.value);
-        }
-        document.title = `${webTitle} - ${globalTitle}` || globalTitle;
-    }).then(r => {});
+        // if (path === '/login') {
+        //     webTitle = <string>meta.title;
+        // } else {
+        //     webTitle += router.currentRoute.value;
+        //     webTitle = setTagsViewNameI18n(router.currentRoute.value);
+        // }
+        document.title = `${meta.title} - ${globalTitle}` || globalTitle;
+    }).then();
 }
 
 /**

@@ -31,7 +31,7 @@
 
 <script setup lang="ts" name="layoutContextMenu">
 import { computed, reactive, onMounted, onUnmounted, watch } from 'vue';
-import message from '/src/i18n/lang/zh-cn';
+import message from '/@/i18n/lang/zh-cn';
 
 // 定义父组件传过来的值
 const props = defineProps({

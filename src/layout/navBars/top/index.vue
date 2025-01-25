@@ -87,6 +87,12 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.layout-navbars-breadcrumb-index {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  background: var(--next-bg-topBar);
+  border-bottom: 1px solid var(--next-border-color-light);
+}
 </style>
