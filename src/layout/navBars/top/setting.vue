@@ -399,13 +399,13 @@
           <el-alert :title="message.layout.tipText" type="warning" :closable="false"> </el-alert>
           <el-button size="default" class="copy-config-btn" type="primary" ref="copyConfigBtnRef" @click="onCopyConfigClick">
             <el-icon class="mr5">
-              <CopyDocument />
+              <el-CopyDocument />
             </el-icon>
             {{ message.layout.copyText }}
           </el-button>
           <el-button size="default" class="copy-config-btn-reset" type="info" @click="onResetConfigClick">
             <el-icon class="mr5">
-              <RefreshRight />
+              <el-RefreshRight />
             </el-icon>
             {{ message.layout.resetText }}
           </el-button>

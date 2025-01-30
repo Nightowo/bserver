@@ -38,7 +38,7 @@ const getIconName = computed(() => {
 });
 // 用于判断 element plus 自带 svg 图标的显示、隐藏
 const isShowIconSvg = computed(() => {
-  return props?.name?.startsWith('ele-');
+  return props?.name?.startsWith('el-');
 });
 // 用于判断在线链接、本地引入等图标显示、隐藏
 const isShowIconImg = computed(() => {

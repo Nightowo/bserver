@@ -27,7 +27,7 @@
 				<img :src="userInfos.photo" class="layout-navbars-breadcrumb-user-link-photo mr5"  alt=""/>
 				{{ userInfos.userName === '' ? 'common' : userInfos.userName }}
 				<el-icon class="el-icon--right">
-					<ArrowDown />
+					<el-ArrowDown />
 				</el-icon>
 			</span>
       <template #dropdown>

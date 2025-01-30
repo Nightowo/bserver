@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts" name="layoutContextMenu">
-import { computed, reactive, onMounted, onUnmounted, watch } from 'vue';
+import { computed, reactive, onMounted, onUnmounted, watch, defineAsyncComponent } from 'vue';
 import message from '/@/i18n/lang/zh-cn';
 
 // 定义父组件传过来的值
@@ -54,10 +54,10 @@ const state = reactive({
   isShow: false,
   //下拉菜单列表
   dropdownList: [
-    { contextMenuClickId: 0, txt: message.tagsView.refresh, affix: false, icon: 'RefreshRight' },
-    { contextMenuClickId: 1, txt: message.tagsView.close, affix: false, icon: 'Close' },
-    { contextMenuClickId: 2, txt: message.tagsView.closeOther, affix: false, icon: 'CircleClose' },
-    { contextMenuClickId: 3, txt: message.tagsView.closeAll, affix: false, icon: 'FolderDelete' },
+    { contextMenuClickId: 0, txt: message.tagsView.refresh, affix: false, icon: 'el-RefreshRight' },
+    { contextMenuClickId: 1, txt: message.tagsView.close, affix: false, icon: 'el-Close' },
+    { contextMenuClickId: 2, txt: message.tagsView.closeOther, affix: false, icon: 'el-CircleClose' },
+    { contextMenuClickId: 3, txt: message.tagsView.closeAll, affix: false, icon: 'el-FolderDelete' },
     {
       contextMenuClickId: 4,
       txt: message.tagsView.fullscreen,

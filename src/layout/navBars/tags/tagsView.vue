@@ -9,7 +9,7 @@
             :data-url="v.url"
             :class="{ 'is-active': isActive(v) }"
             @contextmenu.prevent="onContextmenu(v, $event)"
-            @mousedown="onMousedownMenu(v, $event)"h
+            @mousedown="onMousedownMenu(v, $event)"
             @click="onTagsClick(v, k)"
             :ref="
 						(el) => {
@@ -21,19 +21,19 @@
           <span>{{ setTagsViewNameI18n(v) }}</span>
           <template v-if="isActive(v)">
             <SvgIcon
-                name="ele-RefreshRight"
+                name="el-RefreshRight"
                 class="ml5 layout-navbars-tagsview-ul-li-refresh"
                 @click.stop="refreshCurrentTagsView($route.fullPath)"
             />
             <SvgIcon
-                name="ele-Close"
+                name="el-Close"
                 class="layout-navbars-tagsview-ul-li-icon layout-icon-active"
                 v-if="!v.meta.isAffix"
                 @click.stop="closeCurrentTagsView(getThemeConfig.isShareTagsView ? v.path : v.url)"
             />
           </template>
           <SvgIcon
-              name="ele-Close"
+              name="el-Close"
               class="layout-navbars-tagsview-ul-li-icon layout-icon-three"
               v-if="!v.meta.isAffix"
               @click.stop="closeCurrentTagsView(getThemeConfig.isShareTagsView ? v.path : v.url)"
