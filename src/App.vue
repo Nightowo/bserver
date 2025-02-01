@@ -72,7 +72,7 @@ const test = (route: any) => {
 watch(
     () => route.path,
     () => {
-      test(route.path)
+      //test(route.path)
       other.useTitle();
     },
     {

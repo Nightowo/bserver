@@ -33,7 +33,6 @@ const props = defineProps({
 
 // 获取父级菜单数据
 const childList = computed(() => {
-  console.log(props?.child)
   return <RouteItems>props.child;
 });
 

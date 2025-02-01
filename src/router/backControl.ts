@@ -111,7 +111,7 @@ export function backEndComponent(routes: any) {
  */
 export function setCacheTagsViewRoutes() {
     const storesTagsView = useTagsViewRoutes(pinia);
-    storesTagsView.setTagsViewRoutes(formatTwoStageRoutes(formatFlatteningRoutes(dynamicRoutes))[0].children);
+    storesTagsView.setTagsViewRoutes(formatTwoStageRoutes(formatFlatteningRoutes(dynamicRoutes))[0].children).then();
 }
 
 /**

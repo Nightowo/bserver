@@ -41,3 +41,59 @@ export const getApiUserInfo = async () => {
         }, 1000)
     })
 }
+
+export const getDemoData = async () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // data Ex: res.data
+            const data = {
+                name: 'demoTable',
+                data: [
+                    {
+                        id: 1,
+                        name: '张三',
+                        age: 18,
+                        sex: '男',
+                        address: '北京',
+                    },
+                    {
+                        id: 2,
+                        name: '王五',
+                        age: 19,
+                        sex: '女',
+                        address: '上海',
+                    },
+                    {
+                        id: 3,
+                        name: '李六',
+                        age: 18,
+                        sex: '男',
+                        address: '北京',
+                    },
+                    {
+                        id: 4,
+                        name: '赵七',
+                        age: 19,
+                        sex: '女',
+                        address: '上海',
+                    },
+                    {
+                        id: 5,
+                        name: '钱八',
+                        age: 18,
+                        sex: '男',
+                        address: '北京',
+                    },
+                    {
+                        id: 6,
+                        name: '孙九',
+                        age: 19,
+                        sex: '女',
+                        address: '上海',
+                    },
+                ]
+            };
+            resolve(data);
+        }, 1000)
+    })
+}

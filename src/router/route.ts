@@ -61,7 +61,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
                     isAffix: true,
                     isIframe: false,
                     roles: ['admin', 'common'],
-                    icon: 'iconfont icon-shouye',
+                    icon: 'el-House',
                 },
             },
             {
@@ -76,7 +76,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
                     isAffix: false,
                     isIframe: false,
                     roles: ['admin', 'common'],
-                    icon: 'iconfont el-infoFilled',
+                    icon: 'el-Document',
                 },
             },
             {
@@ -91,7 +91,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
                     isAffix: false,
                     isIframe: false,
                     roles: ['admin', 'common'],
-                    icon: 'iconfont icon-gerenzhongxin',
+                    icon: 'el-User',
                 },
             }
            // other tags

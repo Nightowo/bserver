@@ -5,9 +5,9 @@ import {ElMessage, ElMessageBox} from "element-plus";
 
 // 配置新建一个 axios 实例
 const service: AxiosInstance = axios.create({
-    baseURL: import.meta.env.BASE_URL,
+    baseURL: import.meta.env.BASE_URL,      // import.meta.env.BASE_URL由vite提供自动定位根路由
     timeout: 30000,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json' },    // 请求头格式默认为json
     paramsSerializer: {
         serialize(params) {
             return qs.stringify(params, {allowDots: true});
@@ -50,7 +50,7 @@ service.interceptors.response.use(
     (error) => {
         // 对响应错误做点什么
         if (error.message.indexOf('timeout') != -1) {
-            ElMessage.error('网络超时');
+            ElMessage.error('网络超时' + error.message);
         } else if (error.message == 'Network Error') {
             ElMessage.error('网络连接错误');
         } else {
