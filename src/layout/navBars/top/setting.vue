@@ -396,7 +396,7 @@
           </div>
         </div>
         <div class="copy-config">
-          <el-alert :title="message.layout.tipText" type="warning" :closable="false"> </el-alert>
+<!--          <el-alert :title="message.layout.tipText" type="warning" :closable="false"> </el-alert>-->
           <el-button size="default" class="copy-config-btn" type="primary" ref="copyConfigBtnRef" @click="onCopyConfigClick">
             <el-icon class="mr5">
               <el-CopyDocument />
@@ -460,7 +460,7 @@ const onColorPickerChange = () => {
 // 2. 菜单 / 顶栏
 const onBgColorPickerChange = (bg: string) => {
   // !P: 这行不知道干嘛的，需查找--next-bg-的样式确认...
-  document.documentElement.style.setProperty(`--next-bg-${bg}`, themeConfig.value[0]);
+  document.documentElement.style.setProperty(`--next-bg-${bg}`, (themeConfig.value as any)[0]);
   if (bg === 'menuBar') {
     document.documentElement.style.setProperty(`--next-bg-menuBar-light-1`, getLightColor(getThemeConfig.value.menuBar, 0.05));
   }

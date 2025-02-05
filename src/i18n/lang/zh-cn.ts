@@ -180,4 +180,11 @@ export default {
         copyTextSuccess: '复制成功！',
         copyTextError: '复制失败！',
     },
+    mobile: {
+        placeholder1: '请输入手机号',
+        placeholder2: '请输入验证码',
+        codeText: '获取验证码',
+        btnText: '登 录',
+        msgText: '* 温馨提示：建议使用谷歌、Microsoft Edge，版本 79.0.1072.62 及以上浏览器，360浏览器请使用极速模式',
+    },
 };

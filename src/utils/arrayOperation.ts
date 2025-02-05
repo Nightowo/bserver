@@ -35,14 +35,15 @@ export function isObjectValueEqual<T>(a: T, b: T, depth = 0, maxDepth = 100): bo
 
 	let aProps = Object.getOwnPropertyNames(a);
 	let bProps = Object.getOwnPropertyNames(b);
+	const obj = {};
 
 	if (aProps.length != bProps.length) return false;
 	aProps.forEach((key: any) => {
 		if (!b.hasOwnProperty(key)) {
 			return false;
 		}
-		let propA = a[key];
-		let propB = b[key];
+		let propA = a[key as keyof typeof obj];
+		let propB = b[key as keyof typeof obj];
 		if (typeof propA === 'object' && propA !== null && typeof propB === 'object' && propB !== null) {
 			if (!isObjectValueEqual(propA, propB, depth + 1, maxDepth)) {
 				return false;

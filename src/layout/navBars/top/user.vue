@@ -15,11 +15,11 @@
     <div class="layout-navbars-breadcrumb-user-icon" @click="onLayoutSetingClick">
       <i class="icon-skin iconfont" :title="message.user.title3"></i>
     </div>
-    <div class="layout-navbars-breadcrumb-user-icon mr10" @click="">
+    <div class="layout-navbars-breadcrumb-user-icon mr10" @click="onScreenFullClick">
       <i
           class="iconfont"
-          :title="state.isScreenfull ? message.user.title6 : message.user.title5"
-          :class="!state.isScreenfull ? 'icon-fullscreen' : 'icon-tuichuquanping'"
+          :title="state.isScreenFull ? message.user.title6 : message.user.title5"
+          :class="!state.isScreenFull ? 'icon-fullscreen' : 'icon-tuichuquanping'"
       ></i>
     </div>
     <el-dropdown :show-timeout="70" :hide-timeout="50" @command="onHandleCommandClick">
@@ -45,14 +45,15 @@
 </template>
 
 <script setup lang="ts" name="layoutUser">
-import { ref, computed, reactive } from 'vue';
+import { computed, reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { ElMessageBox, ElMessage, ClickOutside as vClickOutside } from 'element-plus';
+import { ElMessageBox, ElMessage } from 'element-plus';
 import { storeToRefs } from 'pinia';
 import { useUserInfo } from '/@/stores/userInfo';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import message from '/@/i18n/lang/zh-cn';
 import Emitter from '/@/utils/mitt';
+import screenFull from 'screenfull';
 import { Session, Local } from '/@/utils/storage';
 
 // 定义变量内容
@@ -63,11 +64,10 @@ const stores = useUserInfo();
 const storesThemeConfig = useThemeConfig();
 const { userInfos } = storeToRefs(stores);
 const { themeConfig } = storeToRefs(storesThemeConfig);
-const searchRef = ref();
 const state = reactive({
-  isScreenfull: false,
+  isScreenFull: false,
   disabledI18n: 'zh-cn',
-  disabledSize: 'large',
+  disabledSize: 'default',
 });
 
 // 设置分割样式
@@ -131,9 +131,33 @@ const onComponentSizeChange = (size: string) => {
   Local.remove('themeConfig');
   themeConfig.value.globalComponentSize = size;
   Local.set('themeConfig', themeConfig.value);
-  //initI18nOrSize('globalComponentSize', 'disabledSize');
+  initI18nOrSize('globalComponentSize', 'disabledSize');
   window.location.reload();
 };
+
+// 初始化组件大小/i18n
+const initI18nOrSize = (value: string, attr: string) => {
+  (<any>state)[attr] = Local.get('themeConfig')[value];
+};
+
+// 全屏点击时
+const onScreenFullClick = () => {
+  if (!screenFull.isEnabled) {
+    ElMessage.warning('暂不不支持全屏');
+    return false;
+  }
+  screenFull.toggle();
+  screenFull.on('change', () => {
+    state.isScreenFull = screenFull.isFullscreen;
+  });
+};
+
+onMounted(() => {
+  if (Local.get('themeConfig')) {
+    initI18nOrSize('globalComponentSize', 'disabledSize');
+    initI18nOrSize('globalI18n', 'disabledI18n');
+  }
+});
 </script>
 
 <style scoped lang="scss">

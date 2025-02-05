@@ -1,7 +1,7 @@
 <template>
   <el-config-provider :size="getGlobalComponentSize">
-    <RouterView v-show='true' />
-    <Settings ref="settingsRef" v-show="true" />
+    <RouterView />
+    <Settings ref="settingsRef"/>
     <CloseFull v-if="!themeConfig.isLockScreen" />
   </el-config-provider>
 </template>
