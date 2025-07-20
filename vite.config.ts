@@ -1,7 +1,7 @@
-import {ConfigEnv, defineConfig, loadEnv} from 'vite'
+import { ConfigEnv, defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import {resolve} from "path";
-import {buildConfig} from "./src/utils/build";
+import { resolve } from "path";
+import { buildConfig } from "./src/utils/build";
 
 const pathResolve = (dir: string) => {
   return resolve(__dirname, '.', dir);
@@ -32,6 +32,12 @@ const viteConfig =  defineConfig((mode: ConfigEnv) => {
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/gitee/, ''),
         },
+        '/api': {
+          target: 'http://127.0.0.1:2233',
+          ws: true,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        }
       },
     },
     build: {

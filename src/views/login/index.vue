@@ -1,7 +1,7 @@
 <template>
   <div class="login-container flex">
     <div class="login-bg">
-      <video :autoplay="true" :muted="true" :loop="true" playsinline>
+      <video ref="video" :autoplay="true" :muted="true" :loop="true" playsinline>
         <source :src="bg" type="video/mp4" />
       </video>
     </div>
@@ -30,9 +30,11 @@
 </template>
 
 <script setup lang="ts" name="login">
-import { defineAsyncComponent, reactive, onMounted } from "vue";
+import { defineAsyncComponent, reactive, ref, onMounted } from "vue";
 import { nextLoading } from "/@/utils/loading";
 import bg from '/@/assets/2233bnj.mp4'
+import {useTestApi} from "/@/api/test";
+import {userMenu} from "/@/api/menu";
 
 const Account = defineAsyncComponent(() => import('/src/components/loginPanels/account.vue'));
 const Mobile = defineAsyncComponent(() => import('/src/components/loginPanels/mobile.vue'))
@@ -42,8 +44,42 @@ const state = reactive({
   isScan: false,
 });
 
+const video = ref<HTMLVideoElement>();
+
+console.log('env', import.meta.env)
+
+console.log('/api/123')
+
+const test = async() => {
+  try {
+    let params = {
+      userName: '22',
+      password: 'skBili'
+    }
+    let res = await useTestApi().getTest(params);
+    console.log(res)
+  }catch (e){
+    console.log(e)
+    nextLoading.done();
+  }
+}
+
+
+const test02 = async() => {
+  try {
+    let res = await userMenu().getAdminMenu();
+    console.log(res)
+  }catch (e){
+    console.log(e)
+    nextLoading.done();
+  }
+}
 // 页面加载时
 onMounted(() => {
+  video.value?.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+  })
+  test02();
   nextLoading.done();
 });
 </script>
@@ -58,10 +94,14 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   .login-bg {
+    width: 100%;
+    height: 100%;
     position: relative;
     overflow: hidden;
     z-index: 0;
     video {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
   }

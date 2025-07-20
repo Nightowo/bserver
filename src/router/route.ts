@@ -1,6 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
 import message from '/@/i18n/lang/zh-cn';
-
 /**
  * 建议：路由 path 路径与文件夹名称相同，找文件可浏览器地址找，方便定位文件位置
  *
@@ -93,6 +92,53 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
                     roles: ['admin', 'common'],
                     icon: 'el-User',
                 },
+            },
+            {
+                path: '/pubServices',
+                name: 'pubServices',
+                component: () => import('/@/layout/templateRoute/parent.vue'),
+                meta: {
+                    title: '通用服务',
+                    isLink: '',
+                    isHide: false,
+                    isKeepAlive: true,
+                    isAffix: false,
+                    isIframe: false,
+                    roles: ['admin', 'common'],
+                    icon: 'el-Shop',
+                },
+                children: [
+                    {
+                        path: '/pubServices/loanCal',
+                        name: 'loanCal',
+                        component: () => import('/@/views/pubServices/loanCal/index.vue'),
+                        meta: {
+                            title: '贷款计算器',
+                            isLink: '',
+                            isHide: false,
+                            isKeepAlive: true,
+                            isAffix: false,
+                            isIframe: false,
+                            roles: ['admin', 'common'],
+                            icon: 'el-SetUp',
+                        },
+                    },
+                    {
+                        path: '/pubServices/shortMsg',
+                        name: 'shortMsg',
+                        component: () => import('/@/views/pubServices/shortMsg/index.vue'),
+                        meta: {
+                            title: '短信管理',
+                            isLink: '',
+                            isHide: false,
+                            isKeepAlive: true,
+                            isAffix: false,
+                            isIframe: false,
+                            roles: ['admin', 'common'],
+                            icon: 'el-Phone',
+                        },
+                    },
+                ],
             }
            // other tags
         ],

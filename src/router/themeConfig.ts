@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-//各项样式配置
+// 各界面/菜单项样式配置
 export const useThemeConfig = defineStore("themeConfig", {
     state: (): ThemeConfigState => ({
         themeConfig: {
@@ -124,7 +124,7 @@ export const useThemeConfig = defineStore("themeConfig", {
              * !attention 后端控制路由 *
              */
             // 是否开启后端控制路由
-            isRequestRoutes: false,
+            isRequestRoutes: true,
 
             /**
              * 全局网站标题 / 副标题

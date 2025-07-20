@@ -5,7 +5,7 @@ import {ElMessage, ElMessageBox} from "element-plus";
 
 // 配置新建一个 axios 实例
 const service: AxiosInstance = axios.create({
-    baseURL: import.meta.env.BASE_URL,      // import.meta.env.BASE_URL由vite提供自动定位根路由
+    baseURL: import.meta.env.VITE_API_URL,      // import.meta.env.BASE_URL由vite提供自动定位根路由
     timeout: 30000,
     headers: { 'Content-Type': 'application/json' },    // 请求头格式默认为json
     paramsSerializer: {

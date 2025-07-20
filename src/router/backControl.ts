@@ -39,6 +39,8 @@ export function getBackEndControlRoutes() {
     const stores = useUserInfo(pinia);
     const { userInfos } = storeToRefs(stores);
     const auth = userInfos.value.roles[0];
+    alert('asd')
+    console.log(menuApi.getAdminMenu())
     // 管理员 admin
     if (auth === 'admin') return menuApi.getAdminMenu();
     // 其它用户 test
@@ -121,7 +123,7 @@ export function setCacheTagsViewRoutes() {
  */
 export async function setFilterMenuAndCacheTagsViewRoutes() {
     const storesRoutesList = useRoutesList(pinia);
-    storesRoutesList.setRoutesList(dynamicRoutes[0].children as any);
+    await storesRoutesList.setRoutesList(dynamicRoutes[0].children as any);
     setCacheTagsViewRoutes();
 }
 
@@ -154,5 +156,5 @@ export const initBackEndControlRoutes = async () => {
     // 添加动态路由
     await setAddRoute();
     // 设置路由到 pinia routesList 中（已处理成多级嵌套路由）及缓存多级嵌套数组处理后的一维数组
-    setFilterMenuAndCacheTagsViewRoutes();
+    await setFilterMenuAndCacheTagsViewRoutes();
 }

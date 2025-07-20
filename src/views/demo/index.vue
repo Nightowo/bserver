@@ -28,7 +28,7 @@
           <el-table-column label="地址" prop="address" align="center" />
           <el-table-column label="操作" align="center">
             <template #default="scope">
-              <el-button type="primary" icon="el-EditPen" size="default" @click="console.log(scope.row)">edit</el-button>
+              <el-button type="primary" icon="el-EditPen" size="default" @click="msgEdit(scope.row)">edit</el-button>
               <el-button type="primary" icon="el-Delete" size="default" @click="console.log(scope.row)">delete</el-button>
             </template>
           </el-table-column>
@@ -45,6 +45,15 @@
           @current-change="handleCurrentChange"
       />
     </div>
+    <div class="other">
+      <el-dialog destroy-on-close v-model="state.dialogVisible" title="新增短信发送请求">
+        <el-form>
+          <el-form-item label="编号">
+            <el-input v-model="state.msgPane.id" placeholder="请输入查询编号" style="max-width: 200px"></el-input>
+          </el-form-item>
+        </el-form>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -59,6 +68,8 @@ const state = reactive({
   },
   loading: false,
   demoData: [],
+  dialogVisible: false,
+  msgPane: {},
   page: {
     currentPage: 1,
     defaultPageSize: 100,
@@ -83,6 +94,14 @@ const getData = async () => {
     console.log(err);
   }
   state.loading = false;
+}
+
+const msgEdit = (row: any) => {
+  state.msgPane = {
+    ...row,
+  }
+  console.log(state.msgPane)
+  state.dialogVisible = true;
 }
 
 const handleSizeChange = (val: number) => {

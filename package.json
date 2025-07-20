@@ -15,6 +15,7 @@
     "axios": "^1.7.9",
     "echarts": "^5.6.0",
     "element-plus": "^2.9.3",
+    "jest": "^29.7.0",
     "js-cookie": "^3.0.5",
     "mitt": "^3.0.1",
     "nprogress": "^0.2.0",

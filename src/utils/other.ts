@@ -76,8 +76,8 @@ export function isMobile() {
 
 /**
  * 设置 自定义 tagsView 名称、 自定义 tagsView 名称国际化
- * @param params 路由 query、params 中的 tagsViewName
  * @returns 返回当前 tagsViewName 名称
+ * @param item
  */
 export const setTagsViewName = (item: any) => {
     let tagsViewName: string = '';

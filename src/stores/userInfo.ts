@@ -1,6 +1,6 @@
-import {defineStore} from "pinia";
-import {Session} from "/@/utils/storage";
-import {getApiUserInfo} from "/@/utils/testMsg";
+import { defineStore } from "pinia";
+import { Session } from "/@/utils/storage";
+import { getApiUserInfo } from "/@/utils/testMsg";
 
 /**
  * 用户信息

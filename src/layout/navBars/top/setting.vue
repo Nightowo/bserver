@@ -241,7 +241,7 @@
           <div class="layout-breadcrumb-setting-bar-flex-value">
             <el-switch
                 v-model="getThemeConfig.isSortableTagsView"
-                :disabled="state.isMobile ? true : false"
+                :disabled="!!state.isMobile"
                 size="small"
                 @change="onSortableTagsViewChange"
             ></el-switch>

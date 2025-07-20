@@ -1,48 +1,55 @@
 <template>
   <div class="home-container">
-    <div class="home-bg">
-      <video :autoplay="true" :muted="true" :loop="true" playsinline>
-        <source :src="bg" type="video/mp4" />
-      </video>
-    </div>
-    <div class="home-content">
+    <div class="home-head">
+      <el-carousel trigger="click" :interval="2500" height="600px" class="carousel">
+        <el-carousel-item v-for="item in state.img" :key="item.id">
+          <el-image :src="item.url" fit="cover" alt="none" />
+        </el-carousel-item>
+      </el-carousel>
     </div>
   </div>
 </template>
 
 <script setup lang="ts" name="home">
-import { onMounted } from "vue";
-import bg from '/@/assets/2233bnj.mp4';
+import { onBeforeMount, onMounted, reactive } from "vue";
+import { getImages } from "/@/utils/testMsg";
+
+const state = reactive({
+  img: [] as any[],
+});
+
+const getImg = async () => {
+  const res: any = await getImages();
+  state.img = res.data;
+};
+
+onBeforeMount(() => {
+  getImg();
+});
 
 onMounted(() => {
-  console.log('Home component mounted');
+
+  console.log(state.img)
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .home-container {
   width: 100%;
   position: relative;
-  .home-bg {
-    position: absolute;
-    overflow: hidden;
-    height: 100vh;
-    video {
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-  }
-
-  .home-content {
+  display: flex;
+  .home-head {
     position: relative;
-    width: 25%;
-    height: 25%;
-    z-index: 1;
-    background-color: rgb(255, 255, 255, 0.8);
+    width: 100%;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //flex-direction: column;
+    .carousel {
+      width: 600px;
+      border-radius: 15px;
+    }
   }
 }
 </style>

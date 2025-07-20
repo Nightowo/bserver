@@ -68,6 +68,8 @@ export function setFilterRouteEnd() {
     // notFoundAndNoPower 防止 404、401 不在 layout 布局中，不设置的话，404、401 界面将全屏显示
     // 关联问题 No match found for location with path 'xxx'
     filterRouteEnd[0].children = [...setFilterRoute(filterRouteEnd[0].children), ...notFoundAndNoPower];
+    console.log('router')
+    console.log(filterRouteEnd);
     return filterRouteEnd;
 }
 

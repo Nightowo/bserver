@@ -97,3 +97,37 @@ export const getDemoData = async () => {
         }, 1000)
     })
 }
+
+export const getImages = async () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // data Ex: res.data
+            const data = {
+                name: 'demoImages',
+                data: [
+                    {
+                        id: 1,
+                        url: 'https://upload-bbs.miyoushe.com/upload/2025/01/12/82642572/6a49e22d4b16a06c624669ee88352e6f_1796018736517811158.jpg?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg',
+                    },
+                    {
+                        id: 2,
+                        url: 'https://upload-bbs.miyoushe.com/upload/2021/09/05/82642572/ae9ec2d861c689277d71c0e9e9f093a8_6623469552544362484.jpg?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg',
+                    },
+                    {
+                        id: 3,
+                        url: 'https://upload-bbs.miyoushe.com/upload/2022/11/03/82642572/865c185bdf0456e0f260db82ff262df2_2127951842747695065.jpg?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg'
+                    },
+                    {
+                        id: 4,
+                        url: 'https://upload-bbs.miyoushe.com/upload/2023/11/21/82642572/c28d41b5e415bf02681db4c71a41ca40_2509483050110626430.jpg?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg',
+                    },
+                    {
+                        id: 5,
+                        url: 'https://upload-bbs.miyoushe.com/upload/2021/04/27/82642572/83ccc0d47f8795ecfe1606d6333d6e94_4285792410380881514.jpg?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg',
+                    },
+                ]
+            }
+            resolve(data);
+        }, 500);
+    })
+ }
